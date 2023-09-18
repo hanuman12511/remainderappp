@@ -1,0 +1,30 @@
+const NavigationConstants = {
+  // Auth Stack
+  // PreferredLangScreen: 'PreferredLangScreen',
+  Home: 'Home',
+  LoginScreen: 'LoginScreen',
+  SellerLiveStreamingScreen: 'SellerLiveStreamingScreen',
+  BuyerLiveShow: 'BuyerLiveShow',
+  AuthLoadingScreen: 'AuthLoadingScreen',
+  SellerLiveShow: 'SellerLiveShow',
+  Dashboard:"Dashboard",
+  Addremainder:"Addremainder",
+  BuyerShows: 'BuyerShows',
+  ForgotPassword: 'ForgotPassword',
+  UserSignUpScreen: 'UserSignUpScreen',
+  VerifyOtpScreen: 'VerifyOtpScreen',
+  ChangePasswordScreen: 'ChangePasswordScreen',
+  NotificationScreen: 'NotificationScreen',
+  PaymentDetailsScreen: 'PaymentDetailsScreen',
+  EditProfileScreen: 'EditProfileScreen',
+  OrdersScreen: 'OrdersScreen',
+  SettingScreen: 'SettingScreens',
+  CategoriesScreen: 'CategoriesScreen',
+  SubCategoryScreen: 'SubCategoryScreen',
+  ShopAllCategoryScreen: 'ShopAllCategoryScreen',
+  CategryFollowScreen: 'CategryFollowScreen',
+  DrawerNavigation: 'DrawerNavigation',
+  ShowAllCateoreScreen: 'ShowAllCateoreScreen',
+};
+
+export default NavigationConstants;
