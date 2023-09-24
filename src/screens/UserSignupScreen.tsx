@@ -1,14 +1,15 @@
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Fonts } from "../themes";
+
+import { Fonts, colors } from "../themes";
 import { moderateScale } from "../utils/ScalingUtils";
 import React from 'react'
-import {ImageBackground} from 'react-native'
+import {ImageBackground,KeyboardAwareScrollView, StyleSheet,Text} from 'react-native'
+import { TouchableOpacity } from "react-native-gesture-handler";
 const UserSignupScreen = ({navigation}) => {
 
     return(
            
          <ImageBackground
-        source={Images.backgroundImg}
+       
         resizeMode={'cover'}
         style={styles.backgroundImgStyle}>
         <KeyboardAwareScrollView
@@ -16,6 +17,9 @@ const UserSignupScreen = ({navigation}) => {
           contentContainerStyle={styles.contentContainerStyle}
           keyboardShouldPersistTaps={'handled'}
           extraHeight={10}>
+            <TouchableOpacity style={styles.btn}>
+              <Text>SignUp</Text>
+            </TouchableOpacity>
             </KeyboardAwareScrollView>
             </ImageBackground>
         
@@ -85,6 +89,10 @@ const styles = StyleSheet.create({
     hrline:{
       backgroundColor:colors.blue,
       height:moderateScale(1)
+    },
+    btn:{
+      flex:1,
+      backgroundColor:"red"
     }
   });
   

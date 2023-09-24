@@ -19,8 +19,11 @@ import * as SpinnerRef from '../utils/SpinnerRef'
 import NavigationConstants from '../navigators/NavigationConstant'
 
 const LoginScreen = ({navigation}: any) => {
-  const [userName, setUserName] = useState('');
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [cpassword, setCPassword] = useState('');
   const [fcm, setFcm] = useState("fcmtoken")
 
   const userNameRef = useRef<any>(null);
@@ -30,8 +33,11 @@ const LoginScreen = ({navigation}: any) => {
 
   useFocusEffect(
     React.useCallback(() => {
-      setUserName('');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
       setPassword('');
+      setCPassword('');
     }, []),
   );
 
@@ -72,7 +78,7 @@ const LoginScreen = ({navigation}: any) => {
   }; */
 
   const onChangeUserName = (txt: any) => {
-    setUserName(txt);
+    setFirstName(txt);
   };
 
   const onChangePassword = (txt: any) => {
@@ -84,7 +90,7 @@ const LoginScreen = ({navigation}: any) => {
   };
 
   const validateInputs = () => {
-    if (isStrEmpty(userName.trim())) {
+    if (isStrEmpty(firstname.trim())) {
       FlashMessageRef.show({message: Strings.userNameValidation});
       return false;
     } else if (isStrEmpty(password.trim())) {
@@ -97,7 +103,7 @@ const LoginScreen = ({navigation}: any) => {
 
   const onPressLoginButton = () => {
     let data = {
-      email: userName,
+      email: firstname,
       password: password,
       deviceType: Platform.OS === 'ios' ? 2 : 1,
       deviceToken: fcm,
@@ -133,8 +139,10 @@ const LoginScreen = ({navigation}: any) => {
             text={Strings.signIn}
             primaryTextStyle={styles.signInStyle}
           />
+       
+          
           <PrimaryInput
-            value={userName}
+            value={lastname}
             onChangeText={onChangeUserName}
             inputName={Strings.userNmae}
             inputIcon={Images.userIcon}
@@ -170,10 +178,10 @@ const LoginScreen = ({navigation}: any) => {
           />
           <View style={styles.hrline}/>
           <View style={styles.signupview}>
-            <Text>new user create</Text>
-            <Text> Account?</Text>
+            <Text style={styles.textcolor}>new user create</Text>
+            <Text style={styles.textcolor}> Account?</Text>
             <TouchableOpacity onPress={onPressSignupButton}>
-              <Text>Sign-Up</Text>
+              <Text style={styles.textcolor}>Sign-Up</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -243,10 +251,19 @@ const styles = StyleSheet.create({
   },
   hrline:{
     backgroundColor:colors.blue,
-    height:moderateScale(1)
+    height:moderateScale(2)
   },
   signupview:{
-    flex:1,
+   marginTop:moderateScale(20),
+   padding:moderateScale(10),
+    flexDirection:'row',
+    alignText:"center"
+   
     
+    
+  },
+  textcolor:{
+
+    color:"#fff",
   }
 });

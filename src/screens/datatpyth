@@ -1,0 +1,4 @@
+print(regressor.intercept_)
+print(regressor.coef_)
+
+ypr=9.68207815∗x+2.82689235

@@ -92,6 +92,7 @@ export default FlashMessage;
 
 const styles = StyleSheet.create({
     container: {
+        
         minHeight: 40,
         marginTop: getStatusBarHeight(true) + 10,
         position: 'absolute',

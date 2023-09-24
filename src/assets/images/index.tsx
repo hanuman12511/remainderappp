@@ -61,4 +61,4 @@ const Images = {
   icondown: require('./icondown.png'),
   home: require('./home.png'),
 };
-export default Images;
+export default c;

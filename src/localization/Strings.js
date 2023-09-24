@@ -225,5 +225,8 @@ export default Strings = {
   allCategories: 'All Categories',
   liveshow: 'Live Shows',
   showAll: 'Show All',
+
+
+  
   
 };

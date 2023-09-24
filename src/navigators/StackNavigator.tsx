@@ -33,6 +33,9 @@ import CategryFollowScreen from '../screens/buyerScreens/CategryFollowScreen';
 import ShowAllCateoreScreen from '../screens/buyerScreens/ShowAllCateoreScreen';
 import DashbordScreen from '../screens/DashboardScreen';
 import Addremainder from '../screens/Addremainder';
+import UserSignupScreen from '../screens/UserSignupScreen';
+import ReminderScreen from '../screens/ReminderScreen';
+import ReminderDetails from '../screens/RminderDetails';
 
 // custom component screen
 
@@ -45,11 +48,14 @@ const RootNavigator = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="AuthLoadingScreen"
+      initialRouteName=""
       screenOptions={{
         headerShown: false,
         gestureEnabled: false,
       }}>
+        <Stack.Screen name={'reminder'} component={ReminderDetails} />
+        <Stack.Screen name={'addRemider'} component={ReminderScreen} />
+
       <Stack.Screen name={'AuthLoadingScreen'} component={AuthLoadingScreen} />
       <Stack.Screen name={'TopTabNav'} component={TopTabNav} />
 
