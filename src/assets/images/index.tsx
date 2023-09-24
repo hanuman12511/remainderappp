@@ -9,7 +9,9 @@ const Images = {
   start: require('./start.png'),
   stop: require('./stop.png'),
   audioOn: require('./audioOn.png'),
-
+  arrowup:require('./arrowup.png'),
+  dateicon:require('./dateicon.png'),
+  arrowdown:require('./arrowdown.png'),
   redExclamation: require('./redExclamation.png'),
 
   // seller
@@ -61,4 +63,4 @@ const Images = {
   icondown: require('./icondown.png'),
   home: require('./home.png'),
 };
-export default c;
+export default Images;

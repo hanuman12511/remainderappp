@@ -19,6 +19,8 @@ interface PrimaryInputProps {
   value: any;
   onChangeText: any
   keyboardType?: any
+  editable?:any,
+  requiref?:boolean,
 }
 
 const PrimaryInput: React.FC<PrimaryInputProps> = props => {
@@ -29,10 +31,13 @@ const PrimaryInput: React.FC<PrimaryInputProps> = props => {
     <View style={styles.container}>
         <View style={[props.layoutstyle]}>
       <View>
+   
+    
       <View style={styles.textfield}>
-        <Text style={styles.inputNameStyle}>{props.inputName} </Text>
-        <RequireField/>
+      {props.inputName!==''&&  <Text style={styles.inputNameStyle}>{props.inputName} </Text>}
+      {  props.requiref &&  <RequireField/>}
         </View>
+
         {
           props.passwordInput ?
             // password input code 
@@ -84,6 +89,7 @@ const PrimaryInput: React.FC<PrimaryInputProps> = props => {
                 returnKeyType={props.returnKeyType}
                 onSubmitEditing={props.onSubmitEditing}
                 maxLength={props.maxLength}
+                editable={props.editable}
               />
             </View>
         }

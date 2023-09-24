@@ -35,7 +35,9 @@ import DashbordScreen from '../screens/DashboardScreen';
 import Addremainder from '../screens/Addremainder';
 import UserSignupScreen from '../screens/UserSignupScreen';
 import ReminderScreen from '../screens/ReminderScreen';
-import ReminderDetails from '../screens/RminderDetails';
+import ReminderDetails from '../screens/ReminderDetails';
+
+import AddReminder from '../screens/AddReminder';
 
 // custom component screen
 
@@ -52,9 +54,11 @@ const RootNavigator = () => {
       screenOptions={{
         headerShown: false,
         gestureEnabled: false,
-      }}>
-        <Stack.Screen name={'reminder'} component={ReminderDetails} />
-        <Stack.Screen name={'addRemider'} component={ReminderScreen} />
+      }}> 
+       <Stack.Screen name={'reminder'} component={ReminderDetails} />
+       <Stack.Screen name={'addRemider'} component={AddReminder} />
+       
+      
 
       <Stack.Screen name={'AuthLoadingScreen'} component={AuthLoadingScreen} />
       <Stack.Screen name={'TopTabNav'} component={TopTabNav} />
@@ -67,10 +71,10 @@ const RootNavigator = () => {
         name={NavigationConstants.Dashboard}
         component={DashbordScreen}
       />
-      <Stack.Screen
+    {/*   <Stack.Screen
         name={NavigationConstants.Addremainder}
         component={Addremainder}
-      />
+      /> */}
       <Stack.Screen
         name={NavigationConstants.UserSignUpScreen}
         component={UserSignupScreen}

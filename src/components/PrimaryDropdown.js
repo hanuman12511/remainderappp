@@ -1,11 +1,12 @@
 
 import React, { memo, useState } from 'react';
-import {View,Text,StyleSheet} from 'react-native'
+import {View,Text,StyleSheet,Image} from 'react-native'
 import { Dropdown } from 'react-native-element-dropdown';
 import { getScreenWidth } from '../utils/Common';
 import {Fonts} from '../assets/fonts'
 import { colors } from '../assets/colors';
 import RequireField from './RequireField';
+import Images from '../assets/images';
 function PrimaryDropdown(props){
    
     const [isFocus, setIsFocus] = useState(false);
@@ -40,14 +41,10 @@ console.log(props)
            props.selectType(item.value);
            setIsFocus(false);
           }}
-         /*  renderLeftIcon={() => (
-            <AntDesign
-              style={styles.icon}
-              color={isFocus ? 'blue' : 'black'}
-              name="Safety"
-              size={20}
-            />
-          )} */
+        renderRightIcon={() => (
+          <Image source={isFocus?Images.arrowup:Images.arrowdown} style={styles.arrawiconeimage}/>
+          
+          )} 
         />
         </View>
         </View>
@@ -108,4 +105,17 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 16,
       },
+      lastrenewalimg:{
+        borderColor:'red',
+        borderRadius:100,
+        borderWidth:1,
+        width:20,
+        height:20
+    },
+    arrawiconeimage:{
+      width:20,
+      height:20,
+      
+
+    }
 })

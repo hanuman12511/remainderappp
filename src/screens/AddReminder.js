@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 
-import { Image, StyleSheet,View ,Text} from 'react-native';
+import { Image, StyleSheet,View ,Text, TouchableOpacity} from 'react-native';
 import {colors} from '../assets/colors'
 import PrimaryDropdown from '../components/PrimaryDropdown';
 import { getScreenHeight, getScreenWidth } from '../utils/Common';
@@ -10,8 +10,9 @@ import PrimaryInput from '../components/PrimaryInput';
 import { isStrEmpty, isValidName, isValidUserName } from '../utils/UtilityFunc';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import RequireField from '../components/RequireField';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import moduleName from 'module'
+import DatePicker from 'react-native-date-picker'
+
+import Images from '../assets/images'
 const data = [
     { label: 'Vehicle', value: '1' },
     { label: 'License', value: '2' },
@@ -20,9 +21,9 @@ const data = [
     { label: 'Cars', value: '1' },
     { label: 'Buses', value: '2' },
   ];
-export default function ReminderDetails(){
+export default function AddReminder(){
     const[remindertype,setReminderType] = useState(data[0].value)
-    const[vehicletype,setVehicleType] = useState(null)
+    const[ vehicletype,setVehicleType] = useState(null)
     const[vehicleregitrationnumber,setVehicleRegitrationNumber] = useState(null)
     const[vehiclename,setVehicleName] = useState(null)
     const[licensetype1,setLicenseType] = useState(null)
@@ -30,6 +31,9 @@ export default function ReminderDetails(){
     const [isexpiredate,setIsExpireDate] =useState(false)
     const [isrenewaldate,setIsRenewalDate]=useState(false)
     const [isrenewal,setIsRenewal]=useState(false)
+    const [date, setDate] = useState(new Date())
+    const [open, setOpen] = useState(false)
+
 
     //ref
     const registrationref=useRef('')
@@ -69,6 +73,17 @@ export default function ReminderDetails(){
         selecttype:'Select License Type'
      
     }
+    let renewalfrequency={
+        title:string.renewalfrequency,
+        selectType:setLicenseType,
+        type:vehicletype,
+        layoutstyle:styles.layoutViewStyle,
+        Data:data2,
+        textstyle:styles.textstyle,
+        isRequire:true,
+        selecttype:'Select License Type'
+     
+    }
     let btndate={
         primaryBtnStyle: styles.onpressbtnstyle,
 
@@ -88,7 +103,9 @@ export default function ReminderDetails(){
         onSubmitEditing: "",
         value:{vehicleregitrationnumber},
         onChangeText: VehicleRegitrationNumber,
-        keyboardType: ""
+        keyboardType: "",
+        editable:true,
+        requiref:true,
 
     }
     let inputvehiclename={
@@ -102,7 +119,9 @@ export default function ReminderDetails(){
         onSubmitEditing: "",
         value:{vehiclename},
         onChangeText: VehicleName,
-        keyboardType: ""
+        keyboardType: "",
+        editable:true,
+        requiref:true,
 
     }
     let inputlicensenumber={
@@ -116,7 +135,9 @@ export default function ReminderDetails(){
         onSubmitEditing: "",
         value:{licensenumber},
         onChangeText: LicenseNumber,
-        keyboardType: ""
+        keyboardType: "",
+        editable:true,
+        requiref:true,
 
     }
 
@@ -220,6 +241,19 @@ return true
        
         }
     }
+
+    function renewalfun(){
+        setIsRenewalDate(true)
+        setIsExpireDate(false)
+        setIsRenewal(true)
+
+    }
+    function expirefun(){
+        setIsExpireDate(true)
+        setIsRenewalDate(false)
+        setIsRenewal(false)
+
+    }
     return(<>
     <View style={styles.container}>
         <KeyboardAwareScrollView style={{paddingHorizontal:15}}>    
@@ -242,16 +276,42 @@ return true
             <Text style={styles.lastrenewaltext}>Last Renewal Date</Text>
             {RequireField()}
         </View>
-        <View>
-            <View>
-                <TouchableOpacity>
-                    <Image source={Images.audioOff} style={styles.lastrenewalimg}/>
+        <View style={styles.inlasrenewaldate}>
+            <View style={styles.renewalexpired}>
+                <TouchableOpacity onPress={()=>renewalfun()}>
+                    <Image source={isrenewaldate&& Images.audioOff} style={styles.lastrenewalimg}/>
                 </TouchableOpacity>
+                <Text style={styles.renewalexpiredtext}>Renewal Date</Text>
             </View>
-            <View></View>
+            <View style={styles.renewalexpired}>
+
+            <TouchableOpacity onPress={()=>expirefun()}>
+                    <Image source={isexpiredate&&Images.audioOff} style={styles.lastrenewalimg}/>
+                </TouchableOpacity>
+                <Text style={styles.renewalexpiredtext}>Expire Date</Text>
+            </View>
         </View>
        
-
+        <View style={styles.renewalexpired}>
+         <TouchableOpacity onPress={() => setOpen(true)} style={styles.datepicker}>
+            <Text style={styles.renewalexpiredtext}>{open?"date":"Select Expire Date"}</Text>
+             <Image source={Images.dateicon} style={styles.dateicon}/>
+                  
+                </TouchableOpacity>
+                <DatePicker
+                    modal={date}
+                    open={open}
+                    date={date}
+                    onConfirm={(date) => {
+                         setOpen(false)
+                        setDate(date)
+                        }}
+                    onCancel={() => {
+                    setOpen(false)
+                    }}
+                    />
+            </View>
+            <PrimaryDropdown {...licensetype}/>
        <PrimaryButton {...btndate}/>
         </KeyboardAwareScrollView>
 
@@ -297,10 +357,51 @@ const styles =StyleSheet.create({
         color:colors.black
     },
     lastrenewalimg:{
-        borderColor:red100,
+        borderColor:'red',
         borderRadius:100,
-        width:10,
-        height:10
+        borderWidth:1,
+        width:20,
+        height:20
+    },
+    inlasrenewaldate:{
+        flex:1,
+        flexDirection:'row'
+    },
+    renewalexpired:{
+        flex:1,
+        flexDirection:'row',
+       alignItems:'center'
+    }
+    ,
+    renewalexpiredtext:{
+        flex:1,
+        marginLeft:10
+    },
+    datepicker:{
+        flex:1,
+        flexDirection:'row',
+        borderRadius:10,
+        borderWidth:.5,
+        marginVertical:10,
+        paddingVertical:15,
+        borderColor:'gray',
+        alignItems:'center'
+    },
+    datepickerimg:{
+      
+        borderRadius:10,
+        borderWidth:1,
+        width:25,
+        height:25,
+        marginRight:10,
+       
+
+    },
+    dateicon:{
+       
+        width:25,
+        height:25,
+        marginRight:10,
     }
 
 })
