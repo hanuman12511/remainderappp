@@ -30,18 +30,17 @@ console.log('====================================');
 },[])
 
 function showvahicledetails(){
-    setReminderTypeId(1)
+    setReminderTypeId(2)
 setReminderType("Vehicle")
 setVehicleType('Cars')
 setVehicleRegitrationNumber("74838293")
-setVehicleName()
-setLicenseType()
-setLicenseNumber()
-serModel()
-setManufact()
-setRenewaldate()
-setVehicleName()
-setRenewalFre()
+setVehicleName("HondaCity")
+setLicenseType("Haivy")
+setLicenseNumber("657656")
+serModel("2023")
+setManufact("2016")
+setRenewaldate("22 Sep 2023")
+setRenewalFre("6 Months")
 
 }
 
@@ -90,11 +89,12 @@ setRenewalFre()
         editable:false,
         requiref:false,
     }
+   
     let vehiclenamein={
         passwordInput: false,
         inputName: string.vehiclename,
         inputIcon: "",
-        placeholder: "Vehicle name",
+        placeholder: `${vehiclename? vehiclename:"*"}`,
         maxLength:15 ,
         refObj:registrationref,
         returnKeyType:"" ,
@@ -109,7 +109,7 @@ setRenewalFre()
         passwordInput: false,
         inputName: string.licensetype,
         inputIcon: "",
-        placeholder: "License Type",
+        placeholder:`${licensetype1? licensetype1:"*"}`,
         maxLength:15 ,
         refObj:registrationref,
         returnKeyType:"" ,
@@ -124,7 +124,7 @@ setRenewalFre()
         passwordInput: false,
         inputName: string.licensenumber,
         inputIcon: "",
-        placeholder: "License number",
+        placeholder: `${licensenumber? licensenumber:"*"}`,
         maxLength:15 ,
         refObj:registrationref,
         returnKeyType:"" ,
@@ -139,7 +139,7 @@ setRenewalFre()
         passwordInput: false,
         inputName: string.model,
         inputIcon: "",
-        placeholder: "model",
+        placeholder: `${modeluse? modeluse:"*"}`,
         maxLength:15 ,
         refObj:registrationref,
         returnKeyType:"" ,
@@ -154,7 +154,7 @@ setRenewalFre()
         passwordInput: false,
         inputName: string.menufacturing,
         inputIcon: "",
-        placeholder: "manufact",
+        placeholder:  `${manuuse? manuuse:"*"}`,
         maxLength:15 ,
         refObj:registrationref,
         returnKeyType:"" ,
@@ -169,7 +169,7 @@ setRenewalFre()
         passwordInput: false,
         inputName: string.renewalfrequency,
         inputIcon: "",
-        placeholder: "renewalfrequency",
+        placeholder:  `${renewalfre? renewalfre:"*"}`,
         maxLength:15 ,
         refObj:registrationref,
         returnKeyType:"" ,
@@ -180,11 +180,11 @@ setRenewalFre()
         editable:false,
         requiref:false,
     }
-    let renewaldate={
+    let renewaldate1={
         passwordInput: false,
         inputName: "",
         inputIcon: "",
-        placeholder: "renewal Date",
+        placeholder:  `${renealdate!==''?renealdate:"*"}`,
         maxLength:15 ,
         refObj:registrationref,
         returnKeyType:"" ,
@@ -236,7 +236,7 @@ setRenewalFre()
                 
                     <Text style={styles.renewalexpiredtext}>Renewal Date</Text>
             </View>
-            <PrimaryInput {...renewaldate}/>
+            <PrimaryInput {...renewaldate1}/>
             <PrimaryInput {...renewalfra}/>
             </View>
             </ScrollView>
