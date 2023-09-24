@@ -1,0 +1,96 @@
+ "VehicleName": [
+      "Vehicle name must be between 4 to 15 alphanumeric characters."
+    ],
+    "VehicleRegistrationNumber": [
+      "Registeration number must be between 7 to 12 characters."
+  
+      {
+        "id": 0,
+        "userId": 0,
+        "remainderType": 1,
+        "vehicleType": 1,
+        "vehicleTypeName": "hondata",
+        "vehicleName": "hondatt",
+        "vehicleModel": "2023",
+        "vehicleManufacturingYear": "2017",
+        "vehicleRegistrationNumber": "7689056",
+        "licenseNumber":null,
+        "licenseType": 0,
+        "renewalFrequency": 1,
+        "registrationExpireDate": "",
+        "lastRenewalDate": "23 Sep 2023",
+        "isRenewalDate": true
+      }
+
+      
+  "id": 0,
+  "userId": 0,
+  "remainderType": 1,
+  "vehicleType": 1,
+  "vehicleTypeName": "hondata",
+  "vehicleName": "hondatt",
+  "vehicleModel": "2023",
+  "vehicleManufacturingYear": "2017",
+  "vehicleRegistrationNumber": "7689046",
+  "licenseNumber":null,
+  "licenseType": 0,
+  "renewalFrequency": 0,
+  "registrationExpireDate": "23 Sep 2023",
+  "lastRenewalDate": "",
+  "isRenewalDate":false
+}
+
+
+      {
+        "id": 0,
+        "userId": 0,
+        "remainderType": 2,
+        "vehicleType": 1,
+        "vehicleTypeName": "",
+        "vehicleName": null,
+        "vehicleModel": "",
+        "vehicleManufacturingYear": "",
+        "vehicleRegistrationNumber":null,
+        "licenseNumber":"323412",
+        "licenseType": 2,
+        "renewalFrequency": 0,
+        "registrationExpireDate": "23 Sep 2023",
+        "lastRenewalDate": "",
+        "isRenewalDate":false
+      }
+
+      	
+Response body
+Download
+{
+  "data": 108,
+  "responseCode": 200,
+  "message": "You have added license successfully."
+}
+
+
+
+
+{
+    "id": 0,
+    "userId": 0,
+    "remainderType": 2,
+    "vehicleType": 1,
+    "vehicleTypeName": "",
+    "vehicleName": null,
+    "vehicleModel": "",
+    "vehicleManufacturingYear": "",
+    "vehicleRegistrationNumber":null,
+    "licenseNumber":"326412",
+    "licenseType": 2,
+    "renewalFrequency": 1,
+    "registrationExpireDate": "",
+    "lastRenewalDate": "23 Sep 2023",
+    "isRenewalDate":true
+  }
+
+  {
+    "data": 109,
+    "responseCode": 200,
+    "message": "You have added license successfully."
+  }

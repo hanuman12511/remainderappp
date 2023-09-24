@@ -4,6 +4,7 @@ import { PrimaryInput } from '../components'
 import string from '../localization/string'
 import Images from '../assets/images'
 import { colors } from '../assets/colors'
+import BuyerRepo from '../data/repo/BuyerRepo'
 export default function ReminderDetails(){
     const registrationref =useRef('')
     const[remindertypeid,setReminderTypeId] = useState(0)
@@ -22,14 +23,22 @@ export default function ReminderDetails(){
 
 
 useEffect(()=>{
-showvahicledetails()
-console.log('====================================');
-console.log("**********************");
-console.log('====================================');
+
+    showvahicledetails()
+
 
 },[])
 
-function showvahicledetails(){
+async function showvahicledetails(){
+
+const data ={
+    Id:23
+}
+    const res =await BuyerRepo.remainderDetailsApi(data.Id)
+    console.log('====================================')
+    console.log(red)
+    console.log('====================================')
+
     setReminderTypeId(2)
 setReminderType("Vehicle")
 setVehicleType('Cars')

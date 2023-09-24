@@ -55,10 +55,12 @@ const RootNavigator = () => {
         headerShown: false,
         gestureEnabled: false,
       }}> 
-       <Stack.Screen name={'reminder'} component={ReminderDetails} />
-       <Stack.Screen name={'addRemider'} component={AddReminder} />
-       
+
+
       
+       <Stack.Screen name={'reminder'} component={ReminderDetails} />
+       
+       <Stack.Screen name={'addRemider'} component={AddReminder} />
 
       <Stack.Screen name={'AuthLoadingScreen'} component={AuthLoadingScreen} />
       <Stack.Screen name={'TopTabNav'} component={TopTabNav} />

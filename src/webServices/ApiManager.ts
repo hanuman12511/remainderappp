@@ -26,8 +26,9 @@ class ApiManager {
         if (loginData != null) {
             const offset = new Date().getTimezoneOffset() * 60
             return {
-                "Authorization": `Bearer ${loginData.authorizationToken}`,
-                "UtcOffsetInSecond": offset
+                "Authorization": `Bearer ${'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBbGwiLCJqdGkiOiI2NjIzOGM1NC1hNTRmLTQzYzMtOGU0Mi1kZGU0OTc2MDYzZmIiLCJ1c2VySWQiOiIxNCIsIkRldmljZSI6InN0cmluZyIsIkRldmljZVR5cGUiOiIwIiwibmJmIjoxNjk1NTY1ODA1LCJleHAiOjE3MDM0NDk4MDUsImlzcyI6ImFwaSIsImF1ZCI6IkFsbCJ9.JbTXLEJxM-Ch0VfYbrbIgTt93aUSpXdplcI62kOmSF8'}`,
+                "UtcOffsetInSecond": offset,
+                "accessToken": "a94635c1-1c60-4f9f-a38c-66654771dc96"
             }
         }
         return

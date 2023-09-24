@@ -56,6 +56,26 @@ class BuyerRepo {
         })
     };
 
+
+    static remainderDetailsApi = (
+        
+        Id:number,
+       
+    ) => {
+        return new Promise((resolve, reject) => {
+            const body = {
+                Id,
+     
+            }
+            const apiManager = new ApiManager()
+            apiManager.makePostRequest(WebConstants.kGetReminderDetails, body).then((res: any) => {              
+
+                resolve(res)
+            })
+        })
+    };
+
+
     static buyerSignupApi = (
         fullName: string,
         emailID: string,

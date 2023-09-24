@@ -36,6 +36,8 @@ const WebConstants = {
   kDashboarDetails: 'api/Vehicle/DashboardDetails',
   kAddremainder: 'api/Vehicle/AddVehicle',
   kGetLiveShowStatus: 'Buyer/LiveShowStatus',
+  kGetReminderDetails: '/api/Vehicle/GetReminderDetails',
+
   GetUserStripeDetail: 'UserAccount/GetUserStripeDetail',
   CreateCustomer: 'UserAccount/CreateCustomer',
   paymentSetupIntent: '/UserAccount/paymentSetupIntent',

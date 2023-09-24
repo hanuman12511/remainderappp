@@ -10,7 +10,7 @@ import PrimaryInput from '../components/PrimaryInput';
 import { isStrEmpty, isValidName, isValidUserName } from '../utils/UtilityFunc';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import RequireField from '../components/RequireField';
-import DatePicker from 'react-native-date-picker'
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import Images from '../assets/images'
 const data = [
@@ -21,6 +21,14 @@ const data = [
     { label: 'Cars', value: '1' },
     { label: 'Buses', value: '2' },
   ];
+  const data3 = [
+    { label: 'light', value: '1' },
+    { label: 'havy', value: '2' },
+  ];
+  const data4 = [
+    { label: '6 Month', value: '1' },
+    { label: '12 Month', value: '2' },
+  ];
 export default function AddReminder(){
     const[remindertype,setReminderType] = useState(data[0].value)
     const[ vehicletype,setVehicleType] = useState(null)
@@ -28,16 +36,54 @@ export default function AddReminder(){
     const[vehiclename,setVehicleName] = useState(null)
     const[licensetype1,setLicenseType] = useState(null)
     const[licensenumber,setLicenseNumber] = useState(null)
+    const[renewalfrequency1,setRenewalFrequency] = useState(0)
     const [isexpiredate,setIsExpireDate] =useState(false)
     const [isrenewaldate,setIsRenewalDate]=useState(false)
-    const [isrenewal,setIsRenewal]=useState(false)
-    const [date, setDate] = useState(new Date())
-    const [open, setOpen] = useState(false)
-
+    const [isrenewal,setIsRenewal]=useState(true)
+  
 
     //ref
     const registrationref=useRef('')
     const vehiclenameref=useRef('')
+
+
+
+    const [date, setDate] = useState(new Date(1598051730000));
+    const [mode, setMode] = useState('date');
+    const [show, setShow] = useState(false);
+  
+    const onChange = (event, selectedDate) => {
+      const currentDate = selectedDate || date;
+      setShow(Platform.OS !== 'ios');
+      setDate(currentDate);
+    };
+  
+    const showMode = currentMode => {
+      setShow(true);
+      setMode(currentMode);
+    };
+  
+    const showDatepicker = () => {
+        console.log('====================================');
+        console.log("datatatt");
+        console.log('====================================');
+      showMode('date');
+    };
+  
+   
+
+    //date convert function
+    function convertDateFormat(inputDate) {
+      
+        const originalDate = moment(inputDate, 'DD/MM/YYYY');
+        
+      
+        const formattedDate = originalDate.format('DD MMM YYYY');
+        console.log('====================================');
+        console.log(formattedDate);
+        console.log('====================================');
+        return formattedDate;
+      }
     
     let reminder={
         title:string.remindertype,
@@ -65,9 +111,9 @@ export default function AddReminder(){
     let licensetype={
         title:string.licensetype,
         selectType:setLicenseType,
-        type:vehicletype,
+        type:licensetype1,
         layoutstyle:styles.layoutViewStyle,
-        Data:data2,
+        Data:data3,
         textstyle:styles.textstyle,
         isRequire:true,
         selecttype:'Select License Type'
@@ -75,13 +121,13 @@ export default function AddReminder(){
     }
     let renewalfrequency={
         title:string.renewalfrequency,
-        selectType:setLicenseType,
+        selectType:setRenewalFrequency,
         type:vehicletype,
         layoutstyle:styles.layoutViewStyle,
-        Data:data2,
+        Data:data4,
         textstyle:styles.textstyle,
         isRequire:true,
-        selecttype:'Select License Type'
+        selecttype:'Select Renewal Frequency'
      
     }
     let btndate={
@@ -155,12 +201,14 @@ function  LicenseNumber(text){
         if(remindertype===null){
          
           console.log("Pls Select Remider Type");
+          alert("Pls Select Remider Type")
         
         return false
         }
         else if(vehicletype===null){
           
            console.log("pls Select Vahicle type");
+           alert("pls Select Vahicle type")
         
             return false
 
@@ -171,21 +219,22 @@ function  LicenseNumber(text){
            
          
             console.log("enter vehicle regitration number");
-           
+            alert("enter vehicle regitration number")
              return false
  
          }
          else if( remindertype==1&&vehicleregitrationnumber&&vehicleregitrationnumber.length<7 ){
            
             console.log("pls enter vehicle regitration number min 7 && max 15");
-           
+            alert("pls enter vehicle regitration number min 7 && max 15")
              return false
  
          }
-         else if(remindertype===1&&(!isValidName(vehiclename)||vehiclename===null)){
+         else if(remindertype==1&&vehiclename===null){
 
           
             console.log("pls Enter Vahicle name 1 ",vehiclename);
+            alert("pls Enter Vahicle name ")
          
              return false
  
@@ -194,16 +243,16 @@ function  LicenseNumber(text){
 
           
             console.log("pls Enter Vahicle name min 4 (2)",vehiclename);
-         
+            alert("pls Enter Vahicle name min 4 (2)")
              return false
  
          }
 
-         else if(remindertype==2&&licensetype===null ){
+         else if(remindertype==2&&licensetype1===null ){
 
           
             console.log("pls select license type ",licensetype);
-         
+            alert("pls select license type ")
              return false
  
          }
@@ -212,7 +261,7 @@ function  LicenseNumber(text){
 
           
             console.log("pls Enter License Number",licensenumber);
-         
+            alert("pls Enter License Number")
              return false
  
          }
@@ -220,12 +269,33 @@ function  LicenseNumber(text){
 
           
             console.log("pls Enter License Number max 6",licensenumber);
-         
+            alert("pls Enter License Number max 6")
+             return false
+ 
+         }
+         else if(isrenewaldate===false && isexpiredate===false){
+            console.log("pls select last renewal date",licensenumber);
+            alert("pls select last renewal date")
+             return false
+ 
+         }
+         else if(isrenewaldate===true && isexpiredate===false && isrenewal===true){
+            console.log("pls select  renewal date",licensenumber);
+            alert("pls select  renewal date")
+             return false
+ 
+         }
+         else if(isrenewaldate===false && isexpiredate===true && isrenewal===false){
+            console.log("pls select  expire date",licensenumber);
+            alert("pls select  expire date")
              return false
  
          }
 return true
     }
+
+
+  
     function onPressReminderSubmit(){
         if(inputValidation()){
        
@@ -235,9 +305,9 @@ return true
             vehicleregitrationnumber,
             vehiclename,
         }
-        console.log('====================================');
+        
         console.log(data);
-        console.log('====================================');
+      
        
         }
     }
@@ -253,6 +323,12 @@ return true
         setIsRenewalDate(false)
         setIsRenewal(false)
 
+    }
+
+    function dateSetFun(date){
+        setOpen(false)
+        //setDate(date)
+        convertDateFormat(date)
     }
     return(<>
     <View style={styles.container}>
@@ -293,26 +369,26 @@ return true
         </View>
        
         <View style={styles.renewalexpired}>
-         <TouchableOpacity onPress={() => setOpen(true)} style={styles.datepicker}>
-            <Text style={styles.renewalexpiredtext}>{open?"date":"Select Expire Date"}</Text>
+         <TouchableOpacity onPress={()=>showDatepicker()} style={styles.datepicker}>
+            <Text style={styles.renewalexpiredtext}>{show?"date":"Select Expire Date"}</Text>
              <Image source={Images.dateicon} style={styles.dateicon}/>
                   
                 </TouchableOpacity>
-                <DatePicker
-                    modal={date}
-                    open={open}
-                    date={date}
-                    onConfirm={(date) => {
-                         setOpen(false)
-                        setDate(date)
-                        }}
-                    onCancel={() => {
-                    setOpen(false)
-                    }}
-                    />
+                {show&& <DateTimePicker 
+        value={ date }
+        mode="date"
+        display='spinner'
+        onChange={ date => {setDate(date)}} />
+                }
+                
             </View>
-            <PrimaryDropdown {...licensetype}/>
-       <PrimaryButton {...btndate}/>
+            <PrimaryDropdown {...renewalfrequency}/>
+            <View style={{marginTop:15}}>
+                <PrimaryButton {...btndate}/>
+            </View>
+            <View style={{marginTop:20}}>
+               
+            </View>
         </KeyboardAwareScrollView>
 
         </View> 
